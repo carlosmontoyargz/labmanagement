@@ -58,3 +58,4 @@ package-lock.json
 /e2e/*.map
 
 /target/
+/.angular/
