@@ -12,6 +12,40 @@ export const navItems: INavData[] = [
   },
   {
     title: true,
+    name: 'LabManagement'
+  },
+  {
+    name: 'Perfil',
+    url: '/perfil',
+    iconComponent: { name: 'cil-user' }
+  },
+  {
+    name: 'Bitácora',
+    url: '/bitacora',
+    iconComponent: { name: 'cil-notes'}
+  },
+  {
+    name: 'Solicitudes',
+    url: '/solicitudes',
+    iconComponent: { name: 'cil-task' }
+  },
+  {
+    name: 'Equipos',
+    url: '/equipos',
+    iconComponent: { name: 'cil-layers' }
+  },
+  {
+    name: 'Usuarios',
+    url: '/usuarios',
+    iconComponent: { name: 'cil-people' }
+  },
+  {
+    name: 'Foro',
+    url: '/foro',
+    iconComponent: { name: 'cil-comment-square' }
+  },
+  {
+    title: true,
     name: 'Theme'
   },
   {

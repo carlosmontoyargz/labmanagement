@@ -1,0 +1,227 @@
+ <c-row ngPreserveWhitespaces>
+   <c-col xs="6">
+     <c-card class="mb-4" id="InformacionUsuario">
+       <c-card-header>
+         <strong>Información de usuario</strong>
+       </c-card-header>
+       <c-card-body>
+         <form cForm method="post" enctype="multipart/form-data">
+           <div class="row mb-3">
+             <label cLabel for="matricula" class="col-sm-3 col-form-label">Matrícula</label>
+             <div class="col-sm-9">
+               <input cFormControl id="matricula" type="text" value="201325916" disabled/>
+             </div>
+           </div>
+           <div class="row mb-3">
+             <label cLabel for="correo" class="col-sm-3 col-form-label">Correo</label>
+             <div class="col-sm-9">
+               <input cFormControl id="correo" placeholder="Correo institucional" type="email" disabled/>
+             </div>
+           </div>
+           <div class="row mb-3">
+             <label cLabel for="carrera" class="col-sm-3 col-form-label">Carrera</label>
+             <div class="col-sm-9">
+               <select id="carrera" aria-label="Carrera" cSelect>
+                 <option value="1">ICC</option>
+                 <option value="2">LCC</option>
+                 <option value="3">ITI</option>
+               </select>
+             </div>
+           </div>
+           <div class="row mb-3">
+             <label cLabel for="nombre" class="col-sm-3 col-form-label">Nombre</label>
+             <div class="col-sm-9">
+               <input cFormControl id="nombre" type="text" placeholder="Nombre" disabled/>
+             </div>
+           </div>
+           <div class="row mb-3">
+             <label cLabel for="apellido-paterno" class="col-sm-3 col-form-label">Apellido paterno</label>
+             <div class="col-sm-9">
+               <input cFormControl id="apellido-paterno" type="text" placeholder="Apellido paterno" disabled/>
+             </div>
+           </div>
+           <div class="row mb-3">
+             <label cLabel for="apellido-materno" class="col-sm-3 col-form-label">Apellido materno</label>
+             <div class="col-sm-9">
+               <input cFormControl id="apellido-materno" type="text" placeholder="Apellido materno" disabled/>
+             </div>
+           </div>
+           <div class="row mb-3">
+             <label cLabel for="telefono" class="col-sm-3 col-form-label">Teléfono</label>
+             <div class="col-sm-9">
+               <input cFormControl id="telefono" type="text" placeholder="Teléfono" disabled/>
+             </div>
+           </div>
+           <div class="row mb-3">
+             <label cLabel for="horas" class="col-sm-3 col-form-label">Horas de servicio</label>
+             <div class="col-sm-9">
+               <input cFormControl id="horas" type="text" placeholder="Horas de servicio" disabled>
+             </div>
+           </div>
+           <div class="row mb-3">
+             <label cLabel for="inicio-servicio" class="col-sm-3 col-form-label">Inicio de servicio</label>
+             <div class="col-sm-9">
+               <input cFormControl id="inicio-servicio" type="date" placeholder="Inicio de servicio" disabled>
+             </div>
+           </div>
+           <div class="row mb-3">
+             <label cLabel for="conclusion-servicio" class="col-sm-3 col-form-label">Conclusión de servicio</label>
+             <div class="col-sm-9">
+               <input cFormControl id="conclusion-servicio" type="date" placeholder="Conclusión de servicio" disabled>
+             </div>
+           </div>
+           <div class="row mb-3">
+             <label cLabel for="creacion" class="col-sm-3 col-form-label">Fecha de creación</label>
+             <div class="col-sm-9">
+               <input cFormControl id="creacion" type="date" placeholder="Fecha de creación" disabled>
+             </div>
+           </div>
+           <div class="col-auto">
+             <button cButton color="primary" class="me-3" type="submit">Guardar</button>
+             <button cButton color="secondary" class="me-3" type="reset">Cancelar</button>
+           </div>
+         </form>
+       </c-card-body>
+     </c-card>
+
+     <c-card class="mb-4" id="GestionContrasena">
+       <c-card-header>
+         <strong>Gestión de contraseña</strong>
+       </c-card-header>
+       <c-card-body>
+         <button cButton color="primary" type="button" class="me-3">
+ <!--          <button type="button" class="btn btn-outline-success btn-lg btn-block" data-toggle="modal" (click)="passwordModal.show()">-->
+           Cambiar contraseña...
+         </button>
+       </c-card-body>
+     </c-card>
+   </c-col>
+
+   <c-col xs="6">
+     <c-card class="mb-4" id="Documentos">
+       <c-card-header>
+         <strong>Documentos</strong>
+       </c-card-header>
+       <c-card-body>
+         <table class="table table-striped">
+           <thead>
+           <tr>
+             <th>Nombre</th>
+             <th>Creación</th>
+             <th>Acción</th>
+           </tr>
+           </thead>
+           <tbody>
+           <tr>
+             <td>Yiorgos Avraamu</td>
+             <td>2012/01/01</td>
+             <td>
+               <span>Eliminar</span>
+             </td>
+           </tr>
+           <tr>
+             <td>Avram Tarasios</td>
+             <td>2012/02/01</td>
+             <td>
+               <span>Eliminar</span>
+             </td>
+           </tr>
+         </table>
+         <button cButton type="button" color="primary" class="float-end">
+           <!--          <button type="button" class="btn btn-outline-success btn-lg btn-block" data-toggle="modal" (click)="myModal.show()">-->
+           Subir documento...
+         </button>
+         <ul class="pagination">
+           <li class="page-item"><a class="page-link" href="#">Prev</a></li>
+           <li class="page-item active">
+             <a class="page-link" href="#">1</a>
+           </li>
+           <li class="page-item"><a class="page-link" href="#">2</a></li>
+           <li class="page-item"><a class="page-link" href="#">3</a></li>
+           <li class="page-item"><a class="page-link" href="#">4</a></li>
+           <li class="page-item"><a class="page-link" href="#">Next</a></li>
+         </ul>
+       </c-card-body>
+     </c-card>
+   </c-col>
+ </c-row>
+
+<!--
+<div bsModal #myModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Subir documento</h4>
+        <button type="button" class="close" (click)="myModal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="file-input">File input</label>
+            <div class="col-md-9">
+              <input type="file" id="file-input" name="file-input">
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="myModal.hide()">Cerrar</button>
+        <button type="button" class="btn btn-primary">Subir documento</button>
+      </div>
+    </div>&lt;!&ndash; /.modal-content &ndash;&gt;
+  </div>&lt;!&ndash; /.modal-dialog &ndash;&gt;
+</div>&lt;!&ndash; /.modal &ndash;&gt;
+-->
+
+<!--
+<div bsModal #passwordModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Cambiar contraseña</h4>
+        <button type="button" class="close" (click)="passwordModal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="" method="post">
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fa fa-asterisk"></i></span>
+              </div>
+              <input type="password" id="current-password" name="current-password" class="form-control"
+                     placeholder="Contraseña actual" autocomplete="current-password">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fa fa-asterisk"></i></span>
+              </div>
+              <input type="password" id="new-password" name="new-password" class="form-control"
+                     placeholder="Nueva contraseña">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fa fa-asterisk"></i></span>
+              </div>
+              <input type="password" id="new-password-confirmation" name="new-password-confirmation" class="form-control"
+                     placeholder="Confirmar contraseña">
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="passwordModal.hide()">Cerrar</button>
+        <button type="button" class="btn btn-primary">Guardar cambios</button>
+      </div>
+    </div>&lt;!&ndash; /.modal-content &ndash;&gt;
+  </div>&lt;!&ndash; /.modal-dialog &ndash;&gt;
+</div>&lt;!&ndash; /.modal &ndash;&gt;
+-->
+

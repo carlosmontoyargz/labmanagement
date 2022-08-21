@@ -21,6 +21,12 @@ const routes: Routes = [
     },
     children: [
       {
+        path: 'perfil',
+        loadChildren: () =>
+          import('./views/perfil/perfil.module').then((m) => m.PerfilModule)
+      },
+
+      {
         path: 'dashboard',
         loadChildren: () =>
           import('./views/dashboard/dashboard.module').then((m) => m.DashboardModule)
