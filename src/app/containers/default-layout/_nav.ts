@@ -12,7 +12,7 @@ export const navItems: INavData[] = [
   },
   {
     title: true,
-    name: 'LabManagement'
+    name: 'Laboratorio de Bases de Datos'
   },
   {
     name: 'Perfil',

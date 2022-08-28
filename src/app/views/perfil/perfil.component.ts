@@ -29,6 +29,7 @@ import {Component} from '@angular/core';
 export class PerfilComponent {
 
   public passwordModalVisible = false;
+  public documentosModalVisible = false;
 
   constructor() { }
 
@@ -38,5 +39,13 @@ export class PerfilComponent {
 
   togglePasswordModal() {
     this.passwordModalVisible = !this.passwordModalVisible;
+  }
+
+  handleDocumentosModalChange(event: boolean) {
+    this.documentosModalVisible = event;
+  }
+
+  toggleDocumentosModal() {
+    this.documentosModalVisible = !this.documentosModalVisible;
   }
 }
