@@ -27,14 +27,16 @@ import {Component} from '@angular/core';
   templateUrl: 'perfil.component.html'
 })
 export class PerfilComponent {
+
+  public passwordModalVisible = false;
+
   constructor() { }
 
-  isCollapsed: boolean = false;
-  iconCollapse: string = 'icon-arrow-up';
-
-  toggleCollapse(): void {
-    this.isCollapsed = !this.isCollapsed;
-    this.iconCollapse = this.isCollapsed ? 'icon-arrow-down' : 'icon-arrow-up';
+  handlePasswordModalChange(event: boolean) {
+    this.passwordModalVisible = event;
   }
 
+  togglePasswordModal() {
+    this.passwordModalVisible = !this.passwordModalVisible;
+  }
 }
