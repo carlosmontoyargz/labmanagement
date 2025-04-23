@@ -21,32 +21,46 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-package mx.buap.cs.labmanagement.api.handler
+package mx.buap.cs.labmanagement.usuarios
 
 import mx.buap.cs.labmanagement.error.SignUpException
 import mx.buap.cs.labmanagement.model.Usuario
-import mx.buap.cs.labmanagement.usuarios.UsuarioService
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.data.rest.core.annotation.HandleBeforeCreate
-import org.springframework.data.rest.core.annotation.HandleBeforeSave
-import org.springframework.data.rest.core.annotation.RepositoryEventHandler
-import org.springframework.stereotype.Component
+//import org.springframework.security.crypto.password.PasswordEncoder
+import org.springframework.stereotype.Service
 import kotlin.jvm.Throws
 
-@Component
-@RepositoryEventHandler(Usuario::class)
-class UsuarioEventHandler
-    @Autowired constructor(val usuarioService: UsuarioService)
+/**
+ *
+ * @author Carlos Montoya
+ * @since 1.0
+ */
+@Service
+class UsuarioServiceImpl
+    @Autowired constructor(
+        val usuarioRepository: UsuarioRepository
+        //val passEncoder: PasswordEncoder
+        )
+    : UsuarioService
 {
-    @HandleBeforeCreate
+    /**
+     * Verifica que el usuario no este registrado, y codifica la
+     * contraseña para ser guardada encriptada en la base de datos.
+     *
+     * @param usuario El usuario a intentar registrar en el sistema
+     */
     @Throws(SignUpException::class)
-    fun handleBeforeCreate(usuario: Usuario) {
-        usuarioService.preregistrar(usuario)
+    override fun preregistrar(usuario: Usuario): Usuario {
+        if (usuarioRepository.existsByCorreo(usuario.correo!!))
+            throw SignUpException("El correo ya se encuentra registrado en el sistema.")
+
+        if (usuarioRepository.existsByMatricula(usuario.matricula!!))
+            throw SignUpException("La matrícula ya se encuentra registrada en el sistema.")
+
+        return encodePassword(usuario);
     }
 
-    @HandleBeforeSave
-    fun hanldeBeforeSave(usuario: Usuario) {
-        usuarioService.encodePassword(usuario)
-    }
+    override fun encodePassword(usuario: Usuario) =
+        usuario
+            //.apply { password = passEncoder.encode(password!!) }
 }

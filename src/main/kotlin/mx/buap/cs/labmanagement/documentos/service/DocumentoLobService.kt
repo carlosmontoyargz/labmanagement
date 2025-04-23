@@ -21,51 +21,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package mx.buap.cs.labmanagement.documentos.service
 
-package mx.buap.cs.labmanagement.model;
-
-import javax.persistence.*;
+import mx.buap.cs.labmanagement.documentos.model.Documento
+import mx.buap.cs.labmanagement.documentos.model.DocumentoLob
+import mx.buap.cs.labmanagement.documentos.exception.DocumentoNoEncontradoException
 
 /**
  * @author Carlos Montoya
  * @since 1.0
  */
-@Entity
-public class DocumentoLob
+interface DocumentoLobService
 {
-    @Id
-    @Column(name = "documento_id")
-    private int id;
+    fun guardar(pDocumento: Documento, bytes: ByteArray): DocumentoLob
 
-    @OneToOne
-    @MapsId
-    private Documento documento;
-
-    @Lob
-//    @Column(columnDefinition = "BYTEA")
-    private byte[] contenido;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public Documento getDocumento() {
-        return documento;
-    }
-
-    public void setDocumento(Documento documento) {
-        this.documento = documento;
-    }
-
-    public byte[] getContenido() {
-        return contenido;
-    }
-
-    public void setContenido(byte[] contenido) {
-        this.contenido = contenido;
-    }
+    @Throws(DocumentoNoEncontradoException::class)
+    fun encontrar(documentoId: Long): DocumentoLob
 }

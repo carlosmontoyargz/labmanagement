@@ -21,14 +21,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package mx.buap.cs.labmanagement.documentos.model;
 
-package mx.buap.cs.labmanagement.model;
-
+import mx.buap.cs.labmanagement.model.Colaborador;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 /**
  * @author Carlos Montoya
@@ -39,28 +40,32 @@ import java.time.LocalDateTime;
 public class Documento
 {
     @Id
-    @Column(name = "documento_id")
+    @Column(
+        name = "documento_id")
     @GeneratedValue(
-            strategy = GenerationType.SEQUENCE, generator = "doc_gr")
+        strategy  = GenerationType.SEQUENCE,
+        generator = "doc_gr")
     @SequenceGenerator(
-            name = "doc_gr", sequenceName = "doc_seq", allocationSize = 1)
-    private int id;
+        name           = "doc_gr",
+        sequenceName   = "doc_seq",
+        allocationSize = 1)
+    private Long id;
 
     @Column(nullable = false)
     private String nombre;
-
-    @CreatedDate
-    private LocalDateTime fechaCreacion;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "colaborador_id")
     private Colaborador colaborador;
 
-    public int getId() {
+    @CreatedDate
+    private LocalDateTime fechaCreacion;
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -95,11 +100,11 @@ public class Documento
 
         Documento documento = (Documento) o;
 
-        return id == documento.id;
+        return Objects.equals(id, documento.id);
     }
 
     @Override
     public int hashCode() {
-        return getClass().hashCode();
+        return Objects.hash(id, fechaCreacion);
     }
 }

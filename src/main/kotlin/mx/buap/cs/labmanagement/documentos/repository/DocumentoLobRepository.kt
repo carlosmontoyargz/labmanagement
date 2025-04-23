@@ -21,19 +21,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package mx.buap.cs.labmanagement.service
+package mx.buap.cs.labmanagement.documentos.repository
 
-import mx.buap.cs.labmanagement.model.Documento
-import mx.buap.cs.labmanagement.model.DocumentoLob
-import org.springframework.core.io.Resource
+import mx.buap.cs.labmanagement.documentos.model.DocumentoLob
+import org.springframework.data.repository.CrudRepository
+import org.springframework.data.rest.core.annotation.RepositoryRestResource
 
-/**
- * @author Carlos Montoya
- * @since 1.0
- */
-interface DocumentoService
-{
-    fun guardar(documento: Documento, bytes: ByteArray): Documento
-
-    fun encontrarLob(documentoId: Int): DocumentoLob
-}
+@RepositoryRestResource(exported = false)
+interface DocumentoLobRepository: CrudRepository<DocumentoLob, Long>

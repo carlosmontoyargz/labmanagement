@@ -24,6 +24,8 @@
 
 package mx.buap.cs.labmanagement.model;
 
+import mx.buap.cs.labmanagement.documentos.model.Documento;
+
 import javax.persistence.*;
 import java.time.Duration;
 import java.time.LocalDate;

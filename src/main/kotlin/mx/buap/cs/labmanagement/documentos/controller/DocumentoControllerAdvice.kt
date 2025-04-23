@@ -21,24 +21,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package mx.buap.cs.labmanagement.repository
+package mx.buap.cs.labmanagement.documentos.controller
 
-import mx.buap.cs.labmanagement.model.Usuario
-import org.springframework.data.jpa.repository.JpaRepository
-import org.springframework.data.rest.core.annotation.RepositoryRestResource
-import java.util.*
+import mx.buap.cs.labmanagement.api.dto.ErrorResponse
+import mx.buap.cs.labmanagement.documentos.exception.DocumentoNoEncontradoException
+import org.springframework.http.HttpStatus
+import org.springframework.web.bind.annotation.ControllerAdvice
+import org.springframework.web.bind.annotation.ExceptionHandler
+import org.springframework.web.bind.annotation.ResponseBody
+import org.springframework.web.bind.annotation.ResponseStatus
 
-/**
- *
- * @author Carlos Montoya
- * @since 1.0
- */
-@RepositoryRestResource(exported = false)
-interface UsuarioRepository : JpaRepository<Usuario, Int>
+@ControllerAdvice
+class DocumentoControllerAdvice
 {
-    fun findByCorreo(correo: String): Optional<Usuario>
+    @ResponseBody
+    @ExceptionHandler(DocumentoNoEncontradoException::class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    fun documentoNoEncontradoException(ex: DocumentoNoEncontradoException) = defaultResponse(ex)
 
-    fun existsByCorreo(correo: String): Boolean
-
-    fun existsByMatricula(matricula: String): Boolean
+    private fun defaultResponse(ex: Exception) =
+        ErrorResponse(
+            mensaje = ex.message,
+            tipo    = ex.javaClass.simpleName)
 }

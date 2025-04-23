@@ -23,7 +23,7 @@
  */
 package mx.buap.cs.labmanagement.api
 
-import mx.buap.cs.labmanagement.error.ArchivoNoEncontradoException
+import mx.buap.cs.labmanagement.documentos.exception.DocumentoNoEncontradoException
 import mx.buap.cs.labmanagement.error.SignUpException
 import mx.buap.cs.labmanagement.error.UsuarioNoEncontradoException
 import mx.buap.cs.labmanagement.api.dto.ErrorResponse
@@ -62,7 +62,7 @@ class ApiControllerAdvice
     @ResponseBody
     @ExceptionHandler(
         UsuarioNoEncontradoException::class,
-        ArchivoNoEncontradoException::class)
+        DocumentoNoEncontradoException::class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     fun entityNotFoundHandler(ex: Exception) = defaultResponse(ex)
 

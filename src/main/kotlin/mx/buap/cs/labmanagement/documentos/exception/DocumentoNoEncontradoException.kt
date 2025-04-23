@@ -21,11 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package mx.buap.cs.labmanagement.config
+package mx.buap.cs.labmanagement.documentos.exception
 
-import org.springframework.boot.context.properties.ConfigurationProperties
-
-@ConfigurationProperties(prefix = "jwt")
-class LabManagementProperties(
-    var secret: String = ""
-)
+class DocumentoNoEncontradoException(id: Long):
+        RuntimeException("Documento con id=$id no ha sido encontrado")

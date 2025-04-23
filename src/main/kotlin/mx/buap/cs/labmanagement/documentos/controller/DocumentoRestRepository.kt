@@ -21,11 +21,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package mx.buap.cs.labmanagement.api
+package mx.buap.cs.labmanagement.documentos.controller
 
-import mx.buap.cs.labmanagement.model.Documento
+import mx.buap.cs.labmanagement.documentos.model.Documento
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.rest.core.annotation.RepositoryRestResource
 
-@RepositoryRestResource(path = "documentos", collectionResourceRel = "documentos")
-interface DocumentoRestRepository: JpaRepository<Documento, Int>
+@RepositoryRestResource(
+    path                  = "documentos",
+    collectionResourceRel = "documentos")
+interface DocumentoRestRepository: JpaRepository<Documento, Long>

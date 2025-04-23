@@ -21,22 +21,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package mx.buap.cs.labmanagement.service
+package mx.buap.cs.labmanagement.usuarios
 
-import mx.buap.cs.labmanagement.error.SignUpException
-import mx.buap.cs.labmanagement.model.Usuario
-import java.util.*
-import kotlin.jvm.Throws
+import mx.buap.cs.labmanagement.model.Colaborador
+import org.springframework.data.jpa.repository.JpaRepository
+import org.springframework.data.rest.core.annotation.RepositoryRestResource
 
-/**
- *
- * @author Carlos Montoya
- * @since 1.0
- */
-interface UsuarioService
-{
-    @Throws(SignUpException::class)
-    fun preregistrar(usuario: Usuario): Usuario
-
-    fun encodePassword(usuario: Usuario): Usuario
-}
+@RepositoryRestResource(exported = false)
+interface ColaboradorRepository: JpaRepository<Colaborador, Long>

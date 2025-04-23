@@ -24,7 +24,7 @@
 package mx.buap.cs.labmanagement.service
 
 import mx.buap.cs.labmanagement.api.ImagenRestRepository
-import mx.buap.cs.labmanagement.error.ArchivoNoEncontradoException
+import mx.buap.cs.labmanagement.documentos.exception.DocumentoNoEncontradoException
 import mx.buap.cs.labmanagement.model.Imagen
 import mx.buap.cs.labmanagement.model.ImagenLob
 import mx.buap.cs.labmanagement.repository.ImagenLobRepository
@@ -53,5 +53,5 @@ class ImagenServiceImpl
     override fun encontrarLob(imagenId: UUID): ImagenLob =
         imagenLobRepository
             .findById(imagenId)
-            .orElseThrow { ArchivoNoEncontradoException(0) } //FIXME
+            .orElseThrow { DocumentoNoEncontradoException(0) } //FIXME
 }

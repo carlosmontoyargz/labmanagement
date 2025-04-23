@@ -26,7 +26,7 @@ package mx.buap.cs.labmanagement.service
 //import mx.buap.cs.labmanagement.model.Colaborador
 //import mx.buap.cs.labmanagement.model.Profesor
 //import mx.buap.cs.labmanagement.model.Usuario
-//import mx.buap.cs.labmanagement.repository.UsuarioRepository
+//import mx.buap.cs.labmanagement.usuarios.UsuarioRepository
 //import org.springframework.beans.factory.annotation.Autowired
 //import org.springframework.context.annotation.Primary
 //import org.springframework.security.core.authority.SimpleGrantedAuthority

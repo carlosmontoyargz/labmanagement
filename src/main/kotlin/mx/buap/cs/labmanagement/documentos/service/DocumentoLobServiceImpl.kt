@@ -21,39 +21,40 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package mx.buap.cs.labmanagement.service
 
-import mx.buap.cs.labmanagement.model.Documento
-import mx.buap.cs.labmanagement.model.DocumentoLob
-import mx.buap.cs.labmanagement.repository.DocumentoLobRepository
-import mx.buap.cs.labmanagement.api.DocumentoRestRepository
-import mx.buap.cs.labmanagement.error.ArchivoNoEncontradoException
+package mx.buap.cs.labmanagement.documentos.service
+
+import mx.buap.cs.labmanagement.documentos.model.Documento
+import mx.buap.cs.labmanagement.documentos.model.DocumentoLob
+import mx.buap.cs.labmanagement.documentos.repository.DocumentoLobRepository
+import mx.buap.cs.labmanagement.documentos.repository.DocumentoRepository
+import mx.buap.cs.labmanagement.documentos.exception.DocumentoNoEncontradoException
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
-import kotlin.jvm.Throws
 
 @Service
-class DocumentoServiceImpl
+class DocumentoLobServiceImpl
     @Autowired constructor(
-        val documentoRepository: DocumentoRestRepository,
+        val documentoRepository: DocumentoRepository,
         val documentoLobRepository: DocumentoLobRepository)
-    : DocumentoService
+    : DocumentoLobService
 {
     @Transactional
-    override fun guardar(documento: Documento, bytes: ByteArray): Documento {
-        val documentoDb = documentoRepository.save(documento)
+    override fun guardar(pDocumento: Documento, bytes: ByteArray): DocumentoLob =
         documentoLobRepository.save(
             DocumentoLob().apply {
-                this.documento = documentoDb
-                this.contenido = bytes
+                contenido = bytes
+                documento = documentoRepository
+                    .findByColaboradorAndNombre(pDocumento.colaborador, pDocumento.nombre)
+                    .map       { it }
+                    .orElseGet { pDocumento }
             })
-        return documentoDb
-    }
 
-    @Throws(ArchivoNoEncontradoException::class)
-    override fun encontrarLob(documentoId: Int): DocumentoLob =
+    @Transactional
+    @Throws(DocumentoNoEncontradoException::class)
+    override fun encontrar(documentoId: Long): DocumentoLob =
         documentoLobRepository
             .findById(documentoId)
-            .orElseThrow { ArchivoNoEncontradoException(documentoId) }
+            .orElseThrow { DocumentoNoEncontradoException(documentoId) }
 }

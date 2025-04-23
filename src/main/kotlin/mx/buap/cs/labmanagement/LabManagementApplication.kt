@@ -23,10 +23,13 @@
  */
 package mx.buap.cs.labmanagement
 
+import mx.buap.cs.labmanagement.config.LabManagementProperties
 import org.springframework.boot.autoconfigure.SpringBootApplication
+import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
+@EnableConfigurationProperties(LabManagementProperties::class)
 class LabManagementApplication
 
 fun main(args: Array<String>) {

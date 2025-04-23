@@ -21,12 +21,50 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package mx.buap.cs.labmanagement.documentos.model;
 
-package mx.buap.cs.labmanagement.repository
+import javax.persistence.*;
 
-import mx.buap.cs.labmanagement.model.DocumentoLob
-import org.springframework.data.repository.CrudRepository
-import org.springframework.data.rest.core.annotation.RepositoryRestResource
+/**
+ * @author Carlos Montoya
+ * @since 1.0
+ */
+@Entity
+public class DocumentoLob
+{
+    @Id
+    @Column(name = "documento_id")
+    private Long id;
 
-@RepositoryRestResource(exported = false)
-interface DocumentoLobRepository: CrudRepository<DocumentoLob, Int>
+    @MapsId
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "documento_id")
+    private Documento documento;
+
+    @Lob
+    private byte[] contenido;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Documento getDocumento() {
+        return documento;
+    }
+
+    public void setDocumento(Documento documento) {
+        this.documento = documento;
+    }
+
+    public byte[] getContenido() {
+        return contenido;
+    }
+
+    public void setContenido(byte[] contenido) {
+        this.contenido = contenido;
+    }
+}

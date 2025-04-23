@@ -24,10 +24,11 @@
 package mx.buap.cs.labmanagement.config
 
 import mx.buap.cs.labmanagement.api.*
+import mx.buap.cs.labmanagement.documentos.model.Documento
+import mx.buap.cs.labmanagement.documentos.service.DocumentoLobService
 import mx.buap.cs.labmanagement.model.*
-import mx.buap.cs.labmanagement.repository.UsuarioRepository
-import mx.buap.cs.labmanagement.service.DocumentoService
-import mx.buap.cs.labmanagement.service.UsuarioService
+import mx.buap.cs.labmanagement.usuarios.UsuarioRepository
+import mx.buap.cs.labmanagement.usuarios.UsuarioService
 import org.apache.logging.log4j.LogManager
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.CommandLineRunner
@@ -45,7 +46,7 @@ class InitialDataConfig
     @Autowired constructor(
         val usuarioService: UsuarioService,
         val usuarioRepository: UsuarioRepository,
-        val documentoService: DocumentoService,
+        val documentoLobService: DocumentoLobService,
         val laboratorioRepository: LaboratorioRestRepository,
         val equipoRepository: EquipoRestRepository,
         val materiaRepository: MateriaRestRepository,
@@ -137,11 +138,11 @@ class InitialDataConfig
 
     private fun guardarDocumentos(colaboradores: List<Usuario>) {
         for (i in 1..10) {
-            documentoService.guardar(
+            documentoLobService.guardar(
                 Documento().apply {
-                    nombre = "documento_$i.docx" //path.fileName.toString()
+                    nombre        = "documento_$i.docx"
                     fechaCreacion = LocalDateTime.now().minusDays(i.toLong())
-                    this.colaborador = colaboradores[i % colaboradores.size] as Colaborador?
+                    colaborador   = colaboradores[i % colaboradores.size] as Colaborador?
                 },
                 Files.readAllBytes(Paths.get("api/files/documento.docx")))
         }

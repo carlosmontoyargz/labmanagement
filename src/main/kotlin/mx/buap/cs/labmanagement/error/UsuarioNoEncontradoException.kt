@@ -26,5 +26,5 @@ package mx.buap.cs.labmanagement.error
 
 import java.lang.RuntimeException
 
-class UsuarioNoEncontradoException(id: Int):
+class UsuarioNoEncontradoException(id: Long):
     RuntimeException("No se encontró usuario $id")

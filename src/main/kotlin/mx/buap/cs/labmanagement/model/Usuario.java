@@ -43,9 +43,14 @@ public class Usuario
 {
     @Id
     @Column(name = "usuario_id")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "usuario_generator")
-    @SequenceGenerator(name = "usuario_generator", sequenceName = "usuario_seq", allocationSize = 1)
-    private int id;
+    @GeneratedValue(
+            strategy  = GenerationType.SEQUENCE,
+            generator = "usuario_generator")
+    @SequenceGenerator(
+            name           = "usuario_generator",
+            sequenceName   = "usuario_seq",
+            allocationSize = 1)
+    private Long id;
 
     @Column(length = 20, nullable = false, unique = true)
     private String matricula;
@@ -97,11 +102,11 @@ public class Usuario
         return getClass().hashCode();
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

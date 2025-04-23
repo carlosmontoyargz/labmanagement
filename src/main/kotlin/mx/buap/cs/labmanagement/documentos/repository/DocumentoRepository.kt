@@ -21,8 +21,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package mx.buap.cs.labmanagement.documentos.repository
 
-package mx.buap.cs.labmanagement.error
+import mx.buap.cs.labmanagement.documentos.model.Documento
+import mx.buap.cs.labmanagement.model.Colaborador
+import org.springframework.data.jpa.repository.JpaRepository
+import org.springframework.data.rest.core.annotation.RepositoryRestResource
+import java.util.Optional
 
-class ArchivoNoEncontradoException(id: Int):
-        RuntimeException("Archivo $id no ha encontrado")
+@RepositoryRestResource(exported = false)
+interface DocumentoRepository: JpaRepository<Documento, Long> {
+    fun findByColaboradorAndNombre(colaborador: Colaborador, nombre: String): Optional<Documento>
+}
